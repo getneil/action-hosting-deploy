@@ -26,8 +26,8 @@ import { existsSync } from "fs";
 import { createCheck } from "./createCheck";
 import { createGacFile } from "./createGACFile";
 import {
+  deployAllProduction,
   deployPreview,
-  deployProductionSite,
   ErrorResult,
   interpretChannelDeployResult,
 } from "./deploy";
@@ -89,7 +89,7 @@ async function run() {
 
     if (isProductionDeploy) {
       startGroup("Deploying to production site");
-      const deployment = await deployProductionSite(gacFilename, {
+      const deployment = await deployAllProduction(gacFilename, {
         projectId,
         target,
         firebaseToolsVersion,
